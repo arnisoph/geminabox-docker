@@ -1,13 +1,12 @@
 FROM ruby:1.9.3
-MAINTAINER arnold.bechtoldt@inovex.de
+MAINTAINER mail@arnoldbechtoldt.com
+
+USER daemon
+WORKDIR /srv/gems/
+
+RUN mkdir -p /srv/gems/
+RUN gem install geminabox
 
 ADD data/ /data/
 
-RUN mkdir -p /srv/gems/
-#RUN ln -s /data/configs/config.ru /srv/gems/
-RUN gem install geminabox
-
-WORKDIR /srv/gems/
-
-USER daemon
 CMD rackup -o 0.0.0.0 /data/configs/config.ru
