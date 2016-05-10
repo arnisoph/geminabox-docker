@@ -1,7 +1,7 @@
 FROM ruby:1.9.3
 MAINTAINER mail@arnoldbechtoldt.com
 
-RUN mkdir -p /srv/gems/
+RUN mkdir -p /srv/gems/ && chown daemon /srv/gems/
 RUN gem install geminabox
 
 ADD data/ /data/
